@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -48,11 +47,15 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-                        {{-- menu dikiri --}}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('siswa.index') }}">
-                                Siswa
-                            </a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Tugas
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="/siswa">Siswa</a></li>
+                            <li><a class="dropdown-item" href="/nilai">Nilai</a></li>
+                            <li><a class="dropdown-item" href="/jurusan">Jurusan</a></li>
+                        </ul>
                         </li>
                     </ul>
 

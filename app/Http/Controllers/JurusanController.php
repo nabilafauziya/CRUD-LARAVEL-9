@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Siswa;
 use Illuminate\Http\Request;
+use App\Models\Jurusan;
 
-class SiswaController extends Controller
+class JurusanController extends Controller
 {
     public function __construct()
     {
@@ -19,8 +19,8 @@ class SiswaController extends Controller
     public function index()
     {
         //menampilkan semua data dari model Siswa
-        $siswa = Siswa::all();
-        return view('siswa.index', compact('siswa'));
+        $jurusan = Jurusan::all();
+        return view('jurusan.index', compact('jurusan'));
     }
 
     /**
@@ -30,7 +30,7 @@ class SiswaController extends Controller
      */
     public function create()
     {
-        return view('siswa.create');
+        return view('jurusan.create');
     }
 
     /**
@@ -41,21 +41,21 @@ class SiswaController extends Controller
      */
     public function store(Request $request)
     {
-        // Validasi
-        $validated = $request->validate([
-            'nis' => 'required|max:255',
-            'nama' => 'required',
-            'alamat' => 'required',
-            'tanggal' => 'required',
-        ]);
+       //validasi
+       $validated = $request->validate([
+        'kode' => 'required|unique:siswas|max:255',
+        'nama' => 'required',
+        'semester' => 'required',
+        'jurusan' => 'required',
+    ]);
 
-        $siswa = new Siswa();
-        $siswa->nis = $request->nis;
-        $siswa->nama = $request->nama;
-        $siswa->alamat = $request->alamat;
-        $siswa->tanggal = $request->tanggal;
-        $siswa->save();
-        return redirect()->route('siswa.index')
+        $jurusan = new Jurusan();
+        $jurusan->kode = $request->kode;
+        $jurusan->nama = $request->nama;
+        $jurusan->semester = $request->semester;
+        $jurusan->jurusan = $request->jurusan;
+        $jurusan->save();
+        return redirect()->route('jurusan.index')
             ->with('success', 'Data berhasil dibuat!');
     }
 
@@ -67,8 +67,8 @@ class SiswaController extends Controller
      */
     public function show($id)
     {
-        $siswa = Siswa::findOrFail($id);
-        return view('siswa.show', compact('siswa'));
+        $jurusan = Jurusan::findOrFail($id);
+        return view('jurusan.show', compact('jurusan'));
     }
 
     /**
@@ -79,8 +79,8 @@ class SiswaController extends Controller
      */
     public function edit($id)
     {
-        $siswa = Siswa::findOrFail($id);
-        return view('siswa.edit', compact('siswa'));
+        $jurusan = Jurusan::findOrFail($id);
+        return view('jurusan.edit', compact('jurusan'));
     }
 
     /**
@@ -92,22 +92,22 @@ class SiswaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // Validasi
-        $validated = $request->validate([
-            'nis' => 'required|max:255',
-            'nama' => 'required',
-            'alamat' => 'required',
-            'tanggal' => 'required',
-        ]);
+        //validasi
+       $validated = $request->validate([
+        'kode' => 'required|unique:siswas|max:255',
+        'nama' => 'required',
+        'semester' => 'required',
+        'jurusan' => 'required',
+    ]);
 
-        $siswa = Siswa::findOrFail($id);
-        $siswa->nis = $request->nis;
-        $siswa->nama = $request->nama;
-        $siswa->alamat = $request->alamat;
-        $siswa->tanggal = $request->tanggal;
-        $siswa->save();
-        return redirect()->route('siswa.index')
-            ->with('success', 'Data berhasil diedit!');
+        $jurusan = new Jurusan();
+        $jurusan->kode = $request->kode;
+        $jurusan->nama = $request->nama;
+        $jurusan->semester = $request->semester;
+        $jurusan->jurusan = $request->jurusan;
+        $jurusan->save();
+        return redirect()->route('jurusan.index')
+            ->with('success', 'Data berhasil dibuat!');
     }
 
     /**
@@ -118,9 +118,9 @@ class SiswaController extends Controller
      */
     public function destroy($id)
     {
-        $siswa = Siswa::findOrFail($id);
-        $siswa->delete();
-        return redirect()->route('siswa.index')
+        $jurusan = Jurusan::findOrFail($id);
+        $jurusan->delete();
+        return redirect()->route('jurusan.index')
             ->with('success', 'Data berhasil dihapus!');
     }
 }

@@ -1,4 +1,3 @@
-
 @extends('layouts.app')
 
 @section('content')
@@ -19,11 +18,10 @@
                             <table class="table align-middle" id="dataTable">
                                 <thead>
                                     <tr>
-                                        <th>No</th>
-                                        <th>NIS</th>
-                                        <th>Nama Siswa</th>
-                                        <th>Alamat Siswa</th>
-                                        <th>Tanggal Lahir</th>
+                                        <th>Kode Mata Pelajaran</th>
+                                        <th>Nama Mata Pelajaran</th>
+                                        <th>Semester</th>
+                                        <th>Jurusan</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -32,10 +30,10 @@
                                     @foreach ($siswa as $data)
                                         <tr>
                                             <td>{{ $no++ }}</td>
-                                            <td>{{ $data->nis }}</td>
+                                            <td>{{ $data->kode }}</td>
                                             <td>{{ $data->nama }}</td>
-                                            <td>{{ $data->alamat }}</td>
-                                            <td>{{ date('d M Y', strtotime($data->tanggal)) }}</td>
+                                            <td>{{ $data->semester }}</td>
+                                            <td>{{ $data->jurusan }}</td>
                                             <td>
                                                 <form action="{{ route('siswa.destroy', $data->id) }}" method="post">
                                                     @csrf

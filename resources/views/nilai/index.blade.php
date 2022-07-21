@@ -1,4 +1,3 @@
-
 @extends('layouts.app')
 
 @section('content')
@@ -9,7 +8,7 @@
                 <div class="card">
                     <div class="card-header">
                         Data Siswa
-                        <a href="{{ route('siswa.create') }}" class="btn btn-sm btn-primary" style="float: right">
+                        <a href="{{ route('nilai.create') }}" class="btn btn-sm btn-primary" style="float: right">
                             Tambah Data
                         </a>
                     </div>
@@ -21,30 +20,29 @@
                                     <tr>
                                         <th>No</th>
                                         <th>NIS</th>
-                                        <th>Nama Siswa</th>
-                                        <th>Alamat Siswa</th>
-                                        <th>Tanggal Lahir</th>
+                                        <th>Kode Mata Pelajaran</th>
+                                        <th>Nilai</th>
+                                        <th>Indeks Nilai</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @php $no = 1; @endphp
-                                    @foreach ($siswa as $data)
+                                    @foreach ($nilai as $index => $data)
                                         <tr>
-                                            <td>{{ $no++ }}</td>
+                                            <td>{{ $index + 1 }}</td>
                                             <td>{{ $data->nis }}</td>
-                                            <td>{{ $data->nama }}</td>
-                                            <td>{{ $data->alamat }}</td>
-                                            <td>{{ date('d M Y', strtotime($data->tanggal)) }}</td>
+                                            <td>{{ $data->kode }}</td>
+                                            <td>{{ $data->nilai }}</td>
+                                            <td>{{ $data->indeks }}</td>
                                             <td>
-                                                <form action="{{ route('siswa.destroy', $data->id) }}" method="post">
+                                                <form action="{{ route('nilai.destroy', $data->id) }}" method="post">
                                                     @csrf
                                                     @method('delete')
-                                                    <a href="{{ route('siswa.edit', $data->id) }}"
+                                                    <a href="{{ route('nilai.edit', $data->id) }}"
                                                         class="btn btn-sm btn-outline-success">
                                                         Edit
                                                     </a> |
-                                                    <a href="{{ route('siswa.show', $data->id) }}"
+                                                    <a href="{{ route('nilai.show', $data->id) }}"
                                                         class="btn btn-sm btn-outline-warning">
                                                         Show
                                                     </a> |

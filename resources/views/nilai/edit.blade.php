@@ -10,14 +10,13 @@
                         Data Siswa
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('siswa.update', $siswa->id) }}" method="post">
+                        <form action="{{ route('nilai.update', $nilai->id) }}" method="post">
                             @csrf
                             @method('put')
-                            
                             <div class="mb-3">
                                 <label class="form-label">NIS</label>
                                 <input type="text" class="form-control  @error('nis') is-invalid @enderror"
-                                    name="nis" value="{{ $siswa->nis }}">
+                                    name="nis" value="{{ $nilai->nis }}">
                                 @error('nis')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -25,35 +24,24 @@
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Nama</label>
-                                <input type="text" class="form-control  @error('nama') is-invalid @enderror"
-                                    name="nama" value="{{ $siswa->nama }}">
-                                @error('nama')
+                                <label class="form-label">Kode Mata Pelajaran</label>
+                                <input type="text" class="form-control  @error('kode') is-invalid @enderror"
+                                    name="kode" value="{{ $nilai->kode }}">
+                                @error('kode')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Alamat</label>
-                                <textarea class="form-control  @error('alamat') is-invalid @enderror" name="alamat">{{ $siswa->alamat }}</textarea>
-                                @error('alamat')
+                                <label class="form-label">Nilai</label>
+                                <textarea class="form-control  @error('nilai') is-invalid @enderror" name="nilai">{{ $nilai->nilai }}</textarea>
+                                @error('nilai')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
-                            <div class="mb-3">
-                                <label class="form-label">Tanggal Lahir</label>
-                                <input type="date" class="form-control  @error('tanggal') is-invalid @enderror"
-                                    name="tanggal" value="{{ $siswa->tanggal }}">
-                                @error('tanggal')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            
                             <div class="mb-3">
                                 <div class="d-grid gap-2">
                                     <button class="btn btn-primary" type="submit">Save</button>
