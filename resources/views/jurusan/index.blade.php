@@ -8,7 +8,7 @@
                 <div class="card">
                     <div class="card-header">
                         Data Siswa
-                        <a href="{{ route('siswa.create') }}" class="btn btn-sm btn-primary" style="float: right">
+                        <a href="{{ route('jurusan.create') }}" class="btn btn-sm btn-primary" style="float: right">
                             Tambah Data
                         </a>
                     </div>
@@ -18,6 +18,7 @@
                             <table class="table align-middle" id="dataTable">
                                 <thead>
                                     <tr>
+                                        <th>No</th>
                                         <th>Kode Mata Pelajaran</th>
                                         <th>Nama Mata Pelajaran</th>
                                         <th>Semester</th>
@@ -27,7 +28,7 @@
                                 </thead>
                                 <tbody>
                                     @php $no = 1; @endphp
-                                    @foreach ($siswa as $data)
+                                    @foreach ($jurusan as $data)
                                         <tr>
                                             <td>{{ $no++ }}</td>
                                             <td>{{ $data->kode }}</td>
@@ -35,14 +36,14 @@
                                             <td>{{ $data->semester }}</td>
                                             <td>{{ $data->jurusan }}</td>
                                             <td>
-                                                <form action="{{ route('siswa.destroy', $data->id) }}" method="post">
+                                                <form action="{{ route('jurusan.destroy', $data->id) }}" method="post">
                                                     @csrf
                                                     @method('delete')
-                                                    <a href="{{ route('siswa.edit', $data->id) }}"
+                                                    <a href="{{ route('jurusan.edit', $data->id) }}"
                                                         class="btn btn-sm btn-outline-success">
                                                         Edit
                                                     </a> |
-                                                    <a href="{{ route('siswa.show', $data->id) }}"
+                                                    <a href="{{ route('jurusan.show', $data->id) }}"
                                                         class="btn btn-sm btn-outline-warning">
                                                         Show
                                                     </a> |

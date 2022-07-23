@@ -24,14 +24,8 @@
                                 readonly>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Indeks Nilai</label>
-                            <input type="text" class="form-control" name="tgl_lahir" value="{{ $nilai->indeks }}"
-                                readonly>
-
-                        </div>
-                        <div class="mb-3">
                             <div class="d-grid gap-2">
-                                <a href="{{ route('siswa.index') }}" class="btn btn-primary" type="submit">Kembali</a>
+                                <a href="{{ route('nilai.index') }}" class="btn btn-primary" type="submit">Kembali</a>
                             </div>
                         </div>
                     </div>

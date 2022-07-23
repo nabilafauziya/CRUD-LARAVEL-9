@@ -43,7 +43,7 @@ class JurusanController extends Controller
     {
        //validasi
        $validated = $request->validate([
-        'kode' => 'required|unique:siswas|max:255',
+        'kode' => 'required|unique:jurusans|max:255',
         'nama' => 'required',
         'semester' => 'required',
         'jurusan' => 'required',
@@ -94,13 +94,13 @@ class JurusanController extends Controller
     {
         //validasi
        $validated = $request->validate([
-        'kode' => 'required|unique:siswas|max:255',
+        'kode' => 'required|unique:jurusans|max:255',
         'nama' => 'required',
         'semester' => 'required',
         'jurusan' => 'required',
     ]);
 
-        $jurusan = new Jurusan();
+        $jurusan = Jurusan::findOrFail($id);
         $jurusan->kode = $request->kode;
         $jurusan->nama = $request->nama;
         $jurusan->semester = $request->semester;

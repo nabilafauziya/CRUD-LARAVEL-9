@@ -18,7 +18,7 @@ class CreateJurusansTable extends Migration
             $table->string('kode')->unique();
             $table->string('nama');
             $table->string('semester');
-            $table->date('jurusan');
+            $table->string('jurusan');
             $table->timestamps();
         });
     }
