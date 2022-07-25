@@ -7,23 +7,14 @@
                 @include('layouts/_flash')
                 <div class="card">
                     <div class="card-header">
-                        Data Siswa
+                        Data Wali
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('jurusan.store') }}" method="post">
+                        <form action="{{ route('wali.store') }}" method="post">
                             @csrf
+                            
                             <div class="mb-3">
-                                <label class="form-label">Kode Mata Pelajaran</label>
-                                <input type="text" class="form-control  @error('kode') is-invalid @enderror"
-                                    name="kode">
-                                @error('kode')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Nama Mata Pelajaran</label>
+                                <label class="form-label">Nama Wali</label>
                                 <input type="text" class="form-control  @error('nama') is-invalid @enderror"
                                     name="nama">
                                 @error('nama')
@@ -33,19 +24,21 @@
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Semester</label>
-                                <input type="text" class="form-control  @error('semester') is-invalid @enderror"
-                                    name="semester">
-                                @error('semester')
+                                <label class="form-label">Foto Wali</label>
+                                <input type="file" class="form-control @error('foto') is-invalid @enderror" name="foto">
+                                @error('foto')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Jurusan</label>
-                                <textarea class="form-control  @error('jurusan') is-invalid @enderror" name="jurusan"></textarea>
-                                @error('jurusan')
+                                <label class="form-label">Pilih Data Siswa</label>
+                                <select name="id_siswa" class="form-control @error('id_siswa') is-invalid @enderror" id="">
+                                    @foreach($siswa as $data)
+                                    <option value="{{$data->id}}">{{$data->nama}}</option>
+                                </select>
+                                @error('id_siswa')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>

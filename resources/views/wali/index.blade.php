@@ -1,3 +1,4 @@
+
 @extends('layouts.admin')
 
 @section('content')
@@ -7,42 +8,43 @@
                 @include('layouts/_flash')
                 <div class="card">
                     <div class="card-header">
-                        Data Siswa
-                        <a href="{{ route('nilai.create') }}" class="btn btn-sm btn-primary" style="float: right">
+                        Data Wali
+                        <a href="{{ route('wali.create') }}" class="btn btn-sm btn-outline-primary" style="float: right">
                             Tambah Data
                         </a>
                     </div>
 
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table align-middle" id="dataTable">
+                            <table class="table" id="dataTable">
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>NIS</th>
-                                        <th>Kode Mata Pelajaran</th>
-                                        <th>Nilai</th>
-                                        <th>Indeks Nilai</th>
+                                        <th>Nama Wali</th>
+                                        <th>Foto</th>
+                                        <th>Nama Siswa</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($nilai as $index => $data)
+                                    @php $no = 1; @endphp
+                                    @foreach ($wali as $data)
                                         <tr>
-                                            <td>{{ $index + 1 }}</td>
-                                            <td>{{ $data->nis }}</td>
-                                            <td>{{ $data->kode }}</td>
-                                            <td>{{ $data->nilai }}</td>
-                                            <td>{{ $data->indeks }}</td>
+                                            <td>{{ $no++ }}</td>
+                                            <td>{{ $data->nama }}</td>
                                             <td>
-                                                <form action="{{ route('nilai.destroy', $data->id) }}" method="post">
+                                                <img src="{{$data->image()}}" style="width:100px; height:100px;">
+                                            </td>
+                                            <td>{{$data->siswa->nama}}</td>
+                                            <td>
+                                                <form action="{{ route('wali.destroy', $data->id) }}" method="post">
                                                     @csrf
                                                     @method('delete')
-                                                    <a href="{{ route('nilai.edit', $data->id) }}"
+                                                    <a href="{{ route('wali.edit', $data->id) }}"
                                                         class="btn btn-sm btn-outline-success">
                                                         Edit
                                                     </a> |
-                                                    <a href="{{ route('nilai.show', $data->id) }}"
+                                                    <a href="{{ route('wali.show', $data->id) }}"
                                                         class="btn btn-sm btn-outline-warning">
                                                         Show
                                                     </a> |

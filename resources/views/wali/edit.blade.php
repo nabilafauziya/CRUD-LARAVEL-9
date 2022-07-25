@@ -7,25 +7,17 @@
                 @include('layouts/_flash')
                 <div class="card">
                     <div class="card-header">
-                        Data Siswa
+                        Data Wali
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('jurusan.store') }}" method="post">
+                        <form action="{{ route('wali.update', $wali->id) }}" method="post" enctype="multipart/form-data">
                             @csrf
+                            @method('put')
+                            
                             <div class="mb-3">
-                                <label class="form-label">Kode Mata Pelajaran</label>
-                                <input type="text" class="form-control  @error('kode') is-invalid @enderror"
-                                    name="kode">
-                                @error('kode')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Nama Mata Pelajaran</label>
+                                <label class="form-label">Nama Wali</label>
                                 <input type="text" class="form-control  @error('nama') is-invalid @enderror"
-                                    name="nama">
+                                    name="nama" value="{{ $wali->nama }}">
                                 @error('nama')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -33,19 +25,30 @@
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Semester</label>
-                                <input type="text" class="form-control  @error('semester') is-invalid @enderror"
-                                    name="semester">
-                                @error('semester')
+                                <label class="form-label">Nama</label>
+                                @if (isset($wali)&& $wali->foto)
+                                <p>
+                                    <img src="{{asset('images/wali/'.$wali->foto" class="img-rounded img-reponsive" style="width:75px; height:75px;">
+                                </p>
+                                @endif
+                                <input type="file" class="form-control @error('foto') is-invalid @enderror"
+                                        name="foto" value="{{$wali->nama}}">
+                                @error('foto')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Jurusan</label>
-                                <textarea class="form-control  @error('jurusan') is-invalid @enderror" name="jurusan"></textarea>
-                                @error('jurusan')
+                                <label class="form-label">Alamat</label>
+                                <select name="id_siswa" class="form-control @error ('id_siswa') is-invalid @enderror" readonly>
+                                    @foreach($siswa as $data)
+                                        <option value="{{$data->id}}"
+                                        {{ $data->id == $wali->id_siswa ? 'selected' : '' }} >
+                                        {{ $data->nama}}
+                                    </option>
+                                </select>
+                                @error('id_siswa')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
